@@ -17,7 +17,6 @@
    window.onload = () => {
     document.querySelector('.myInput').datedropper('show')
     let query = window.location.search.substring(1)
-    alert(window.location)
     if (query) {
      let searchLang = query.indexOf('lang=')
      if (searchLang != -1) {
@@ -42,13 +41,10 @@
    body { margin: 0 }
    header { border-bottom: 0 !important }
    #datedropper {
-    top: 0 !important;
+    top: auto !important;
     bottom: 0;
     left: 50% !important;
-    margin-top: auto;
-    margin-bottom: auto;
     width: 100%;
-    height: 50vh;
     background: transparent !important;
     box-shadow: none
    }
