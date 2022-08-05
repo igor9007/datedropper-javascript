@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+
+ <head>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="datedropper-javascript.js"></script>
+  <script src="datedropper-javascript-lang-UK.js"></script>
+  <script src="datedropper-javascript-lang-RU.js"></script>
+ </head>
+
+ <body style="margin: 0">
+
+  <input class="myInput" type="date" data-dd-opt-expanded-only="true"
+   data-dd-opt-double-view="true" data-dd-opt-show-arrows-on-hover="false"> 
+
+  <script>
+   window.onload = () => {
+    document.querySelector('.myInput').datedropper('show')
+    if (window.Telegram.WebApp.initDataUnsafe.lang) {
+     document.querySelector('.myInput').datedropper('set',{ lang: window.Telegram.WebApp.initDataUnsafe.lang })
+    }
+    /*setTimeout(() => {
+     document.querySelector('.myInput').datedropper('set',{ lang: 'uk' })
+    }, 999)*/
+   }
+
+   new dateDropper({
+    selector: 'input[type="date"]'
+   })
+  </script>
+
+  <style>
+   html {
+    height: 100%;
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(29,39,51,1) 100%) !important
+   }
+   header {
+    border-bottom: 0 !important
+   }
+   #datedropper {
+    top: 10% !important;
+    left: 50% !important;
+    width: 100%;
+    background: transparent !important;
+    box-shadow: none
+   }
+   .dd__block {
+    background: transparent !important
+   }
+   .myInput {
+    margin-left: -222px
+   }
+  </style>
+
+ </body>
+
+</html>
