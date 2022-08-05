@@ -16,12 +16,16 @@
   <script>
    window.onload = () => {
     document.querySelector('.myInput').datedropper('show')
-    if (window.Telegram.WebApp.initDataUnsafe.lang) {
-     document.querySelector('.myInput').datedropper('set',{ lang: window.Telegram.WebApp.initDataUnsafe.lang })
+    let query = window.location.search.substring(1)
+    if (query) {
+     let searchLang = query.indexOf('lang=')
+     if (searchLang != -1) {
+      let lang = query.slice(5, 7)
+      if (lang != '') {
+       document.querySelector('.myInput').datedropper('set',{ lang })
+      }
+     }
     }
-    /*setTimeout(() => {
-     document.querySelector('.myInput').datedropper('set',{ lang: 'uk' })
-    }, 999)*/
    }
 
    new dateDropper({
