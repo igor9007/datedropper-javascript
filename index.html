@@ -15,6 +15,9 @@
 
   <script>
    window.onload = () => {
+    if (window.Telegram.WebApp) {
+     window.Telegram.WebApp.expand()
+    }
     document.querySelector('.myInput').datedropper('show')
     let query = window.location.search.substring(1)
     if (query) {
@@ -52,12 +55,6 @@
    .dd__block { background: transparent !important }
    .myInput { display: none }
    .dd__calendar { display: inherit }
-   .dd__header {
-    visibility: hidden;
-    height: 0;
-    margin-bottom: 0 !important;
-    border-bottom: 0 !important
-   }
   </style>
 
  </body>
