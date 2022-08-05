@@ -9,7 +9,7 @@
   <script src="datedropper-javascript-lang-RU.js"></script>
  </head>
 
- <body style="margin: 0">
+ <body>
 
   <input class="myInput" type="date" data-dd-opt-expanded-only="true" data-dd-opt-show-arrows-on-hover="false"> 
 
@@ -38,25 +38,22 @@
     height: 100%;
     background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(29,39,51,1) 100%) !important
    }
-   header {
-    border-bottom: 0 !important
-   }
+   body { margin: 0 }
+   header { border-bottom: 0 !important }
    #datedropper {
-    top: 32% !important;
+    top: 0 !important;
+    bottom: 0;
     left: 50% !important;
+    margin-top: auto;
+    margin-bottom: auto;
     width: 100%;
+    height: 50vh;
     background: transparent !important;
     box-shadow: none
    }
-   .dd__block {
-    background: transparent !important
-   }
-   .myInput {
-    margin-left: -222px
-   }
-   .dd__calendar {
-    display: inherit
-   }
+   .dd__block { background: transparent !important }
+   .myInput { display: none }
+   .dd__calendar { display: inherit }
    .dd__header {
     visibility: hidden;
     height: 0;
