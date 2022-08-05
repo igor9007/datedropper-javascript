@@ -17,6 +17,7 @@
    window.onload = () => {
     document.querySelector('.myInput').datedropper('show')
     let query = window.location.search.substring(1)
+    alert(window.location)
     if (query) {
      let searchLang = query.indexOf('lang=')
      if (searchLang != -1) {
