@@ -36,8 +36,9 @@
      if (firstOpen) {
       firstOpen = false
      } else {
-      alert(`${res.output.y}-${res.output.mm}-${res.output.dd}`)
+      alert(`test ${res.output.y}-${res.output.mm}-${res.output.dd}`)
       window.Telegram.WebApp.sendData(`${res.output.y}-${res.output.mm}-${res.output.dd}`)
+      window.Telegram.WebApp.close()
      }
     }
    })
