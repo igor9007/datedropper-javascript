@@ -17,8 +17,7 @@
    window.onload = () => {
     if (window.Telegram.WebApp) {
      window.Telegram.WebApp.expand()
-     alert(window.Telegram.WebApp.initData + '@')
-     setTimeout(() => alert(window.Telegram.WebApp.initDataUnsafe + 'sex'), 999)
+     setTimeout(() => alert(window.Telegram.WebApp.initDataUnsafe.user + ' sex ' + window.Telegram.WebApp.initDataUnsafe.user.language_code), 999)
     }
     document.querySelector('.myInput').datedropper('show')
     let query = window.location.search.substring(1)
