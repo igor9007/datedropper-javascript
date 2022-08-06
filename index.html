@@ -33,6 +33,7 @@
     onDropdownExit: (res) => {
      alert(`${res.output.y}-${res.output.mm}-${res.output.dd}`)
      window.Telegram.WebApp.sendData(`${res.output.y}-${res.output.mm}-${res.output.dd}`)
+     window.Telegram.WebApp.close()
     }
    })
   </script>
