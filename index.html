@@ -28,15 +28,16 @@
     }
    }
 
+   let firstOpen = true
    new dateDropper({
     selector: 'input[type="date"]',
     onDropdownExit: (res) => {
-     alert(`${res.output.y}-${res.output.mm}-${res.output.dd}`)
-     //window.Telegram.WebApp.sendData(`${res.output.y}-${res.output.mm}-${res.output.dd}`)
-     //window.Telegram.WebApp.close()
-    },
-    onDestroy: function (el) {
-     alert('onDestroy')
+     if (firstOpen) {
+      firstOpen = false
+     } else {
+      alert(`${res.output.y}-${res.output.mm}-${res.output.dd}`)
+      window.Telegram.WebApp.sendData(`${res.output.y}-${res.output.mm}-${res.output.dd}`)
+     }
     }
    })
   </script>
