@@ -3,42 +3,56 @@
 <html>
 
  <head>
+  <script src="jquery-3.6.0.min.js"></script>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <script src="datedropper-javascript.js"></script>
   <script src="datedropper-javascript-lang-UK.js"></script>
   <script src="datedropper-javascript-lang-RU.js"></script>
+  <script type="text/javascript" src="bootstrap4-clockpicker.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="bootstrap4-clockpicker.min.css">
  </head>
 
  <body>
 
-  <input class="myInput" type="date" data-dd-opt-expanded-only="true" data-dd-opt-show-arrows-on-hover="false"> 
+  <input class="myInput" type="text" data-dd-opt-expanded-only="true" data-dd-opt-show-arrows-on-hover="false">
 
   <script>
+   let date_time, searchResponsePath
    window.onload = () => {
-    if (!window.Telegram.WebApp.isExpanded) { window.Telegram.WebApp.expand() }
+    if (!window.Telegram.WebApp.isExpanded) {window.Telegram.WebApp.expand()}
     document.querySelector('.myInput').datedropper('show')
     let query = window.location.search.substring(1)
     if (query) {
      let searchLang = query.indexOf('lang=')
      if (searchLang != -1) {
-      let lang = query.slice(5, 7)
-      if (lang != '') {
-       document.querySelector('.myInput').datedropper('set',{ lang })
-      }
+      searchResponsePath = query.indexOf('response_path=')
+      searchResponsePath = query.slice(searchResponsePath + 14, searchLang)
+      let lang = query.slice(searchLang + 5, searchLang + 7)
+      document.querySelector('.myInput').datedropper('set',{ lang })
      }
     }
+    $('.myInput').clockpicker({
+     vibrate: true,
+     autoclose: true,
+     afterDone: () => {
+      if (window.Telegram.WebApp) {
+       alert(`${date_time} ${$(".myInput").val()}`)
+       //$.ajax(`https://flowxo.com/hooks/a/67am25dx?response_path=${searchResponsePath}&date_time=${date_time} ${$(".myInput").val()}`)
+       window.Telegram.WebApp.close()
+      }
+     }
+    })
    }
 
-   let firstOpen = true
+   let firstOpenForNotLocalPage = false
    new dateDropper({
-    selector: 'input[type="date"]',
+    selector: 'input[type="text"]',
     onDropdownExit: (res) => {
-     if (firstOpen) {
-      firstOpen = false
+     if (firstOpenForNotLocalPage) {
+      firstOpenForNotLocalPage = false
      } else {
-      alert(`test ${res.output.y}-${res.output.mm}-${res.output.dd}`)
-      window.Telegram.WebApp.sendData(`${res.output.y}-${res.output.mm}-${res.output.dd}`)
-      window.Telegram.WebApp.close()
+      date_time = `${res.output.y}-${res.output.mm}-${res.output.dd}`
+      setTimeout(() => $('.myInput').clockpicker('show'), 0)
      }
     }
    })
@@ -49,9 +63,9 @@
     height: 100%;
     background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(29,39,51,1) 100%) !important
    }
-   body { margin: 0 }
-   header { border-bottom: 0 !important }
-   #datedropper {
+   body {margin: 0}
+   header {border-bottom: 0 !important}
+   #datedropper, .popover {
     top: auto !important;
     bottom: 0;
     left: 50% !important;
@@ -60,9 +74,11 @@
     box-shadow: none;
     transform: translateX(-50%) !important
    }
-   .dd__block { background: transparent !important }
-   .myInput { display: none }
-   .dd__calendar { display: inherit }
+   .dd__block, .popover-body, .clockpicker-plate, .popover-header {background: transparent !important}
+   .myInput {display: none}
+   .dd__calendar {display: inherit}
+   .popover {position: absolute}
+   .clockpicker-plate {margin: auto}
   </style>
 
  </body>
