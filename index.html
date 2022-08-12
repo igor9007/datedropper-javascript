@@ -49,12 +49,9 @@
    new dateDropper({
     selector: 'input[type="text"]',
     onDropdownExit: (res) => {
-     alert('clockpicker1')
-     if (firstOpenForNotLocalPage) {
-      alert('clockpicker2')
+     if (firstOpenForNotLocalPage && window.Telegram.WebApp.headerColor) {
       firstOpenForNotLocalPage = false
      } else {
-      alert('clockpicker3')
       date_time = `${res.output.y}-${res.output.mm}-${res.output.dd}`
       setTimeout(() => $('.myInput').clockpicker('show'), 0)
      }
