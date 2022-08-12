@@ -17,7 +17,7 @@
   <input class="myInput" type="text" data-dd-opt-expanded-only="true" data-dd-opt-show-arrows-on-hover="false">
 
   <script>
-   let date_time, searchResponsePath
+   let date_time, searchResponsePath, flowxoHook
    window.onload = () => {
     if (!window.Telegram.WebApp.isExpanded) {window.Telegram.WebApp.expand()}
     document.querySelector('.myInput').datedropper('show')
@@ -27,6 +27,8 @@
      if (searchLang != -1) {
       searchResponsePath = query.indexOf('response_path=')
       searchResponsePath = query.slice(searchResponsePath + 14, searchLang)
+      flowxoHook = query.indexOf('flowxo_hook=')
+      flowxoHook = query.slice(flowxoHook + 12, searchResponsePath)
       let lang = query.slice(searchLang + 5, searchLang + 7)
       document.querySelector('.myInput').datedropper('set',{ lang })
      }
@@ -36,8 +38,7 @@
      autoclose: true,
      afterDone: () => {
       if (window.Telegram.WebApp) {
-       alert(`${date_time} ${$(".myInput").val()}`)
-       //$.ajax(`https://flowxo.com/hooks/a/67am25dx?response_path=${searchResponsePath}&date_time=${date_time} ${$(".myInput").val()}`)
+       $.ajax(`https://flowxo.com/hooks/a/${flowxoHook}?response_path=${searchResponsePath}&date_time=${date_time} ${$(".myInput").val()}`)
        window.Telegram.WebApp.close()
       }
      }
@@ -60,13 +61,20 @@
   </script>
 
   <style>
+   :root {
+    --dd-background: transparent
+   }
    html {
     height: 100%;
     background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(29,39,51,1) 100%) !important
    }
+   body {
+    margin: 0;
+    height: 100%
+   }
    body {margin: 0}
    header {border-bottom: 0 !important}
-   #datedropper, .popover {
+   #datedropper {
     top: auto !important;
     bottom: 0;
     left: 50% !important;
@@ -75,11 +83,10 @@
     box-shadow: none;
     transform: translateX(-50%) !important
    }
-   .dd__block, .popover-body, .clockpicker-plate, .popover-header {background: transparent !important}
+   .dd__block {background: transparent !important}
    .myInput {display: none}
    .dd__calendar {display: inherit}
-   .popover {position: absolute}
-   .clockpicker-plate {margin: auto}
+   .popover-body {bottom: 0}
   </style>
 
  </body>
