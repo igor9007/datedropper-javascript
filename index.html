@@ -37,7 +37,9 @@
      vibrate: true,
      autoclose: true,
      afterDone: () => {
-      if (window.Telegram.WebApp) {
+      alert('afterDone')
+      if (window.Telegram.WebApp.headerColor) {
+       alert(`https://flowxo.com/hooks/a/${flowxoHook}?response_path=${searchResponsePath}&date_time=${date_time} ${$(".myInput").val()}`)
        $.ajax(`https://flowxo.com/hooks/a/${flowxoHook}?response_path=${searchResponsePath}&date_time=${date_time} ${$(".myInput").val()}`)
        window.Telegram.WebApp.close()
       }
