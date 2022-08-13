@@ -17,7 +17,7 @@
   <input class="myInput" type="text" data-dd-opt-expanded-only="true" data-dd-opt-show-arrows-on-hover="false">
 
   <script>
-   let date_time, searchResponsePath, flowxoHook
+   let date_time, responsePath, flowxoHook
    window.onload = () => {
     if (!window.Telegram.WebApp.isExpanded) {window.Telegram.WebApp.expand()}
     document.querySelector('.myInput').datedropper('show')
@@ -25,12 +25,10 @@
     if (query) {
      let searchLang = query.indexOf('lang=')
      if (searchLang != -1) {
-      searchResponsePath = query.indexOf('response_path=')
-      searchResponsePath = query.slice(searchResponsePath + 14, searchLang)
+      let searchResponsePath = query.indexOf('response_path=')
+      responsePath = query.slice(searchResponsePath + 14, searchLang)
       flowxoHook = query.indexOf('flowxo_hook=')
-      alert([flowxoHook,searchResponsePath])
       flowxoHook = query.slice(flowxoHook + 12, searchResponsePath)
-      alert(flowxoHook)
       let lang = query.slice(searchLang + 5, searchLang + 7)
       document.querySelector('.myInput').datedropper('set',{ lang })
      }
@@ -40,7 +38,7 @@
      autoclose: true,
      afterDone: () => {
       if (window.Telegram.WebApp.headerColor) {
-       $.ajax(`https://flowxo.com/hooks/a/${flowxoHook}?response_path=${searchResponsePath}&date_time=${date_time} ${$(".myInput").val()}`)
+       $.ajax(`https://flowxo.com/hooks/a/${flowxoHook}?response_path=${responsePath}&date_time=${date_time} ${$(".myInput").val()}`)
        window.Telegram.WebApp.close()
       }
      }
