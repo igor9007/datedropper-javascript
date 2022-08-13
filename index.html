@@ -19,7 +19,9 @@
   <script>
    let date_time, responsePath, flowxoHook
    window.onload = () => {
-    if (!window.Telegram.WebApp.isExpanded) {window.Telegram.WebApp.expand()}
+    setTimeout(() => {
+     if (!window.Telegram.WebApp.isExpanded) {window.Telegram.WebApp.expand()}
+    }, 1)
     document.querySelector('.myInput').datedropper('show')
     let query = window.location.search.substring(1)
     if (query) {
