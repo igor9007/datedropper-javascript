@@ -28,8 +28,9 @@
       searchResponsePath = query.indexOf('response_path=')
       searchResponsePath = query.slice(searchResponsePath + 14, searchLang)
       flowxoHook = query.indexOf('flowxo_hook=')
-      alert(query,flowxoHook,searchResponsePath)
+      alert([flowxoHook,searchResponsePath])
       flowxoHook = query.slice(flowxoHook + 12, searchResponsePath)
+      alert(flowxoHook)
       let lang = query.slice(searchLang + 5, searchLang + 7)
       document.querySelector('.myInput').datedropper('set',{ lang })
      }
@@ -65,7 +66,7 @@
     --dd-background: transparent
    }
    html {
-    height: 99%;
+    height: 100%;
     background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(29,39,51,1) 100%) !important;
     overflow: hidden
    }
