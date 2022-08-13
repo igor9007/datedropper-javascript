@@ -41,6 +41,7 @@
      afterDone: () => {
       if (window.Telegram.WebApp.headerColor) {
        $.ajax(`https://flowxo.com/hooks/a/${flowxoHook}?response_path=${responsePath}&date_time=${date_time} ${$(".myInput").val()}`)
+       alert(`https://flowxo.com/hooks/a/${flowxoHook}?response_path=${responsePath}&date_time=${date_time} ${$(".myInput").val()}`)
        window.Telegram.WebApp.close()
       }
      }
