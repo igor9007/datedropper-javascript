@@ -28,7 +28,9 @@
       let searchResponsePath = query.indexOf('response_path=')
       responsePath = query.slice(searchResponsePath + 14, searchLang)
       flowxoHook = query.indexOf('flowxo_hook=')
+      alert([flowxoHook + 12, searchResponsePath])
       flowxoHook = query.slice(flowxoHook + 12, searchResponsePath)
+      alert(flowxoHook)
       let lang = query.slice(searchLang + 5, searchLang + 7)
       document.querySelector('.myInput').datedropper('set',{ lang })
      }
