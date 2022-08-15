@@ -51,6 +51,8 @@
    let firstOpenForNotLocalPage = true
    new dateDropper({
     selector: 'input[type="text"]',
+    maxYear: 2030,
+    minYear: 1940,
     onDropdownExit: (res) => {
      if (firstOpenForNotLocalPage && window.Telegram.WebApp.headerColor) {
       firstOpenForNotLocalPage = false
