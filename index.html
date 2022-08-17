@@ -53,6 +53,9 @@
     selector: 'input[type="text"]',
     maxYear: 2030,
     minYear: 1940,
+    onDropdownOpen: () => {
+     if (!window.Telegram.WebApp.isExpanded) window.Telegram.WebApp.expand()
+    },
     onDropdownExit: (res) => {
      if (firstOpenForNotLocalPage && window.Telegram.WebApp.headerColor) {
       firstOpenForNotLocalPage = false
