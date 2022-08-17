@@ -14,7 +14,7 @@
 
  <body>
 
-  <input class="myInput" type="text" data-dd-opt-expanded-only="true" data-dd-opt-show-arrows-on-hover="false">
+  <input class="myInput" type="text" data-dd-opt-expanded-only="true" data-dd-opt-default-date="2001/12/31">
 
   <script>
    let date_time, responsePath, flowxoHook
@@ -53,10 +53,14 @@
    let firstOpenForNotLocalPage = true
    new dateDropper({
     selector: 'input[type="text"]',
-    maxYear: 2030,
+    maxYear: 2010,
     minYear: 1940,
+    startFromMonday: true,
+    showArrowsOnHover: false,
     onDropdownOpen: () => {
-     if (!window.Telegram.WebApp.isExpanded) window.Telegram.WebApp.expand()
+     setTimeout(() => {
+      if (!window.Telegram.WebApp.isExpanded) window.Telegram.WebApp.expand()
+     }, 1)
     },
     onDropdownExit: (res) => {
      if (firstOpenForNotLocalPage && window.Telegram.WebApp.headerColor) {
