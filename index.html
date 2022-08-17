@@ -18,6 +18,11 @@
 
   <script>
    let date_time, responsePath, flowxoHook
+   let blinkAnimation = () => {
+    $(".dd__view").fadeOut(1000)
+    $(".dd__view").fadeIn(1000)
+   }
+   setInterval(blinkAnimation, 2000)
    window.onload = () => {
     document.querySelector('.myInput').datedropper('show')
     let query = window.location.search.substring(1)
